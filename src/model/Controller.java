@@ -42,13 +42,15 @@ public class Controller {
 
 	//Incomplete
 	// Date class also has their own before() and after() method
-	public String searchProjectsAfterDate(Calendar date) throws ParseException{
+	public String searchProjectsAfterDate(Calendar date){
 		
 		String msg = "";
 		
 		for (int i = 0; i<10; i++){
-			if (projects[i].getInitialDate().after(date)){
-				msg = projects[i].getProjectInfo() + " ";
+			if (projects[i]!=null){
+				if (projects[i].getInitialDate().after(date)){
+					msg = projects[i].getProjectInfo() + " ";
+				}
 			}
 		}
 		return msg;
@@ -57,16 +59,28 @@ public class Controller {
 	
 	//Incomplete
 	// Date class also has their own before() and after() method
-	public String searchProjectsBeforeDate(Calendar date) throws ParseException{
+	public String searchProjectsBeforeDate(Calendar date){
 
 		String msg = "";
 		
 		for (int i = 0; i<10; i++){
-			if (projects[i].getInitialDate().before(date)){
-				msg = projects[i].getProjectInfo() + " ";
+			if (projects[i]!=null){
+				if (projects[i].getInitialDate().before(date)){
+					msg += projects[i].getProjectInfo() + " ";
+				}
 			}
 		}
 		return msg;
 
+	}
+	
+	public String listAll(){
+		String msg = "";
+		for (int i = 0;i<10;i++){
+			if (projects[i]!=null){
+				msg += projects[i].getProjectInfo();
+			}
+		}
+		return msg;
 	}
 }

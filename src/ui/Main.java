@@ -26,15 +26,35 @@ public class Main{
 
 	// Incomplete
 	public void menu() {
-		System.out.println("Register a user (1)");
+		boolean exit = false;
+		int option;
 		
-		System.out.print("Option: ");
-		int option = reader.nextInt();
-		switch (option){
-			case 1:
-				RegisterProject();
-				break;
-		}
+		do{
+			System.out.println("Register a user (1)");
+			System.out.println("Search project after date (2)");
+			System.out.println("Search project before date (3)");
+			System.out.println("List All (4)");
+			
+			System.out.print("Option: ");
+			option = reader.nextInt();
+			switch (option){
+				case 1:
+					RegisterProject();
+					break;
+				case 2:
+					searchProjectsAfterDate();
+					break;
+				case 3:
+					searchProjectsBeforeDate();
+					break;
+				case 4:
+					System.out.println(controller.listAll());
+					break;
+			}
+			
+			System.out.println("Would you like to exit now?");
+			exit = reader.nextBoolean();
+		}while(exit==false);
 	}
 
 	//Incomplete
@@ -84,7 +104,7 @@ public class Main{
 	}
 
 	//Incomplete
-	public void searchProjectsAfterDate() {
+	public void searchProjectsAfterDate(){
 		
 		Calendar calendar = Calendar.getInstance();
 		Calendar date;
@@ -96,13 +116,23 @@ public class Main{
 		months = reader.nextInt();
 		calendar.add(Calendar.MONTH, months);
 		date = calendar;
+		System.out.println(controller.searchProjectsAfterDate(date));
 		
 	}
 	
 	//Incomplete
 	public void searchProjectsBeforeDate() {
-		String date;
-		Calendar cal;
-		SimpleDateFormat sdf;
+		Calendar calendar = Calendar.getInstance();
+		Calendar date;
+		String show;
+		int months;
+		
+		show = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
+		System.out.println("Based in today date of project ("+show+"), Enter a number in months to select the date to search");
+		months = reader.nextInt();
+		calendar.add(Calendar.MONTH, months);
+		date = calendar;
+		System.out.println(controller.searchProjectsBeforeDate(date));
+		
 	}
 }

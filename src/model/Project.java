@@ -40,7 +40,7 @@ public class Project{
 		return initialDate;
 	}
 	
-	public String getInitialDateFormated() throws ParseException{
+	public String getInitialDateFormated(){
 		return formatter.format(this.initialDate.getTime());
 	}
 
@@ -48,7 +48,7 @@ public class Project{
 		return finalDate;
 	}
 
-	public String getFinalDateFormated() throws ParseException{
+	public String getFinalDateFormated(){
 		return formatter.format(this.finalDate.getTime());
 	}		
 
@@ -56,7 +56,7 @@ public class Project{
 		return budget;
 	}
 
-	public String getProjectInfo() throws ParseException{
+	public String getProjectInfo(){
 		return "\nName: " + name + "\nClient: " + clientName + "\nInitial Date: " + getInitialDateFormated() + 
 		"\nFinal Date: " + getFinalDateFormated() + "\nTotalBudget: " + budget + ".\n";
 	}
