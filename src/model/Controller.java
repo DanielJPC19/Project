@@ -14,27 +14,57 @@ public class Controller {
 	}
 	
 	//Incomplete
-	public boolean RegisterProject() {
-
-		return false;
+	public boolean RegisterProject(String name, String clientName,Calendar initialDate, Calendar finalDate, double budget) {
+		int position = getFirstValidPosition();
+		if (position == -1){
+			return false;
+		}else{
+			Project project = new Project(name, clientName, initialDate, finalDate, budget);
+			projects[position] = project;
+			return true;
+		}
+	}
+	
+	private int getFirstValidPosition(){
+		int position = -1;
+		boolean exit = false;
+		
+		for (int i = 0; i<10 && exit == false; i++){
+			if (projects[position]==null){
+				position = i;
+				exit = true;
+			}
+		}
+		
+		return position;
 	}
 
 	//Incomplete
 	// Date class also has their own before() and after() method
-	public String searchProjectsAfterDate() {
-
+	public String searchProjectsAfterDate(Calendar date) {
+		
 		String msg = "";
-
+		
+		for (int i = 0; i<10; i++){
+			if (projects[i].getInitialDate()>date){
+				msg = projects[i].getProjectInfo() + " ";
+			}
+		}
 		return msg;
 
 	}
 	
 	//Incomplete
 	// Date class also has their own before() and after() method
-	public String searchProjectsBeforeDate() {
+	public String searchProjectsBeforeDate(Calendar date) {
 
 		String msg = "";
-
+		
+		for (int i = 0; i<10; i++){
+			if (projects[i].getInitialDate()<date){
+				msg = projects[i].getProjectInfo() + " ";
+			}
+		}
 		return msg;
 
 	}
