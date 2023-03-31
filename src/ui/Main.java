@@ -86,11 +86,12 @@ public class Main{
 	//Incomplete
 	public void searchProjectsAfterDate() {
 		
-		Calendar calendar;
-		Calendar calendar;
+		Calendar calendar = Calendar.getInstance();
+		Calendar date;
 		String show;
+		int months;
 		
-		show = new SimpleDateFormat("dd-MM-yyyy").format(initialDate.getTime());
+		show = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
 		System.out.println("Based in today date of project ("+show+"), Enter a number in months to select the date to search");
 		months = reader.nextInt();
 		calendar.add(Calendar.MONTH, months);

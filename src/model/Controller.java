@@ -2,6 +2,7 @@ package model;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.text.ParseException;
 
 public class Controller {
 
@@ -30,7 +31,7 @@ public class Controller {
 		boolean exit = false;
 		
 		for (int i = 0; i<10 && exit == false; i++){
-			if (projects[position]==null){
+			if (projects[i]==null){
 				position = i;
 				exit = true;
 			}
@@ -41,12 +42,12 @@ public class Controller {
 
 	//Incomplete
 	// Date class also has their own before() and after() method
-	public String searchProjectsAfterDate(Calendar date) {
+	public String searchProjectsAfterDate(Calendar date) throws ParseException{
 		
 		String msg = "";
 		
 		for (int i = 0; i<10; i++){
-			if (projects[i].getInitialDate()>date){
+			if (projects[i].getInitialDate().after(date)){
 				msg = projects[i].getProjectInfo() + " ";
 			}
 		}
@@ -56,12 +57,12 @@ public class Controller {
 	
 	//Incomplete
 	// Date class also has their own before() and after() method
-	public String searchProjectsBeforeDate(Calendar date) {
+	public String searchProjectsBeforeDate(Calendar date) throws ParseException{
 
 		String msg = "";
 		
 		for (int i = 0; i<10; i++){
-			if (projects[i].getInitialDate()<date){
+			if (projects[i].getInitialDate().before(date)){
 				msg = projects[i].getProjectInfo() + " ";
 			}
 		}
