@@ -5,6 +5,7 @@ import model.Controller;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.Date;
 
 public class Main{
 
@@ -39,13 +40,13 @@ public class Main{
 			option = reader.nextInt();
 			switch (option){
 				case 1:
-					RegisterProject();
+					TryCatchRegisterProject();
 					break;
 				case 2:
-					searchProjectsAfterDate();
+					TryCatchSearchAfterDate();
 					break;
 				case 3:
-					searchProjectsBeforeDate();
+					TryCatchSearchBeforeDate();
 					break;
 				case 4:
 					System.out.println(controller.listAll());
@@ -56,40 +57,48 @@ public class Main{
 			exit = reader.nextBoolean();
 		}while(exit==false);
 	}
+	
+	private Calendar dateToCalendar(Date date){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar;
+		
+	}
+	
+	public void TryCatchRegisterProject(){
+		try{
+			RegisterProject();
+		}catch(ParseException ex){
+			System.out.println("There is a ParseException error");
+		}
+	}
 
 	//Incomplete
-	public void RegisterProject() {
+	private void RegisterProject() throws ParseException{
 		String name;
 		String clientName;
-		Calendar initialDate;
-		Calendar finalDate;
+		final Calendar initialDate;
+		String getInitialDate;
+		final Calendar finalDate;
+		String getFinalDate;
 		double budget;
-		int months;
-		Calendar calendar = Calendar.getInstance();
-		String show;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date date;
 		
 		System.out.print("Name of project: ");
 		name = reader.next();
 		System.out.print("Name of client: ");
 		clientName = reader.next();
 		
-		show = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
-		System.out.println("Based in today date ("+show+"), How many months will be start the project?");
-		months = reader.nextInt();
-		calendar.add(Calendar.MONTH, months);
-		initialDate = calendar;
+		System.out.println("Type the initial date in format <dd/MM/yyyy>:");
+		getInitialDate = reader.next();
+		date = sdf.parse(getInitialDate);
+		initialDate = dateToCalendar(date);
 		
-		/*
-		initialDate = reader.next();
-		cal1 = Calendar.getInstance();
-		sdf = new SimpleDateFormat("dd/MM/yy");
-		cal1.setTime(sdf.parse(initialDate));// all done
-		*/
-		show = new SimpleDateFormat("dd-MM-yyyy").format(initialDate.getTime());
-		System.out.println("Based in initial date of project ("+show+"), How many months will be end the project?");
-		months = reader.nextInt();
-		calendar.add(Calendar.MONTH, months);
-		finalDate = calendar;
+		System.out.println("Type the final date in format <dd/MM/yyyy>:");
+		getFinalDate = reader.next();
+		date = sdf.parse(getFinalDate);
+		finalDate = dateToCalendar(date);
 		
 		System.out.print("Budget: ");
 		budget = reader.nextDouble();
@@ -104,35 +113,53 @@ public class Main{
 	}
 
 	//Incomplete
-	public void searchProjectsAfterDate(){
+	
+	public void TryCatchSearchAfterDate(){
+		try{
+			searchProjectsAfterDate();
+		}catch(ParseException exe){
+			System.out.println("There is a ParseException error");
+		}
+	}
+	
+	private void searchProjectsAfterDate() throws ParseException{
 		
-		Calendar calendar = Calendar.getInstance();
-		Calendar date;
-		String show;
-		int months;
+		String getDate;
+		Date date;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar newDate;
 		
-		show = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
-		System.out.println("Based in today date of project ("+show+"), Enter a number in months to select the date to search");
-		months = reader.nextInt();
-		calendar.add(Calendar.MONTH, months);
-		date = calendar;
-		System.out.println(controller.searchProjectsAfterDate(date));
+		System.out.println("Type the after date in format <dd/MM/yyyy>:");
+		getDate = reader.next();
+		date = sdf.parse(getDate);
+		newDate = dateToCalendar(date);
+		
+		System.out.println(controller.searchProjectsAfterDate(newDate));
 		
 	}
 	
 	//Incomplete
-	public void searchProjectsBeforeDate() {
-		Calendar calendar = Calendar.getInstance();
-		Calendar date;
-		String show;
-		int months;
+	
+	public void TryCatchSearchBeforeDate(){
+		try{
+			searchProjectsBeforeDate();
+		}catch(ParseException exe){
+			System.out.println("There is a ParseException error");
+		}
+	}
+	
+	private void searchProjectsBeforeDate() throws ParseException{
+		String getDate;
+		Date date;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar newDate;
 		
-		show = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
-		System.out.println("Based in today date of project ("+show+"), Enter a number in months to select the date to search");
-		months = reader.nextInt();
-		calendar.add(Calendar.MONTH, months);
-		date = calendar;
-		System.out.println(controller.searchProjectsBeforeDate(date));
+		System.out.println("Type the before date in format <dd/MM/yyyy>:");
+		getDate = reader.next();
+		date = sdf.parse(getDate);
+		newDate = dateToCalendar(date);
+		
+		System.out.println(controller.searchProjectsBeforeDate(newDate));
 		
 	}
 }
