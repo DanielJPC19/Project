@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.text.ParseException;
 
 public class Controller {
@@ -14,7 +13,6 @@ public class Controller {
 	
 	}
 	
-	//Incomplete
 	public boolean RegisterProject(String name, String clientName,Calendar initialDate, Calendar finalDate, double budget) {
 		int position = getFirstValidPosition();
 		if (position == -1){
@@ -40,8 +38,6 @@ public class Controller {
 		return position;
 	}
 
-	//Incomplete
-	// Date class also has their own before() and after() method
 	public String searchProjectsAfterDate(Calendar date) throws ParseException{
 		
 		String msg = "";
@@ -57,8 +53,6 @@ public class Controller {
 
 	}
 	
-	//Incomplete
-	// Date class also has their own before() and after() method
 	public String searchProjectsBeforeDate(Calendar date) throws ParseException{
 
 		String msg = "";

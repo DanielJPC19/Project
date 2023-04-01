@@ -1,7 +1,6 @@
 package ui;
-
-import java.util.Scanner;
 import model.Controller;
+import java.util.Scanner;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
@@ -31,7 +30,7 @@ public class Main{
 		int option;
 		
 		do{
-			System.out.println("Register a user (1)");
+			System.out.println("Register a project (1)");
 			System.out.println("Search project after date (2)");
 			System.out.println("Search project before date (3)");
 			System.out.println("List All (4)");
@@ -50,11 +49,16 @@ public class Main{
 					break;
 				case 4:
 					System.out.println(controller.listAll());
+					System.out.println("-------------------------------------------------------------------------------------------");
 					break;
+				default:
+					System.out.println("The option is not in the menu");
 			}
 			
 			System.out.println("Would you like to exit now?");
+			System.out.printf("Yes (true)\nNo (false)\n");
 			exit = reader.nextBoolean();
+			System.out.println("-------------------------------------------------------------------------------------------");
 		}while(exit==false);
 	}
 	
@@ -62,7 +66,6 @@ public class Main{
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		return calendar;
-		
 	}
 	
 	public void TryCatchRegisterProject(){
@@ -70,6 +73,7 @@ public class Main{
 			RegisterProject();
 		}catch(ParseException ex){
 			System.out.println("There is a ParseException error");
+			System.out.println("-------------------------------------------------------------------------------------------");
 		}
 	}
 
@@ -85,7 +89,7 @@ public class Main{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date date;
 		
-		System.out.print("Name of project: ");
+		System.out.printf("\nName of project: ");
 		name = reader.next();
 		System.out.print("Name of client: ");
 		clientName = reader.next();
@@ -109,6 +113,7 @@ public class Main{
 		}else {
 			System.out.println("The project has not been created");
 		}
+		System.out.println("-------------------------------------------------------------------------------------------");
 		
 	}
 
@@ -119,6 +124,7 @@ public class Main{
 			searchProjectsAfterDate();
 		}catch(ParseException exe){
 			System.out.println("There is a ParseException error");
+			System.out.println("-------------------------------------------------------------------------------------------");
 		}
 	}
 	
@@ -135,6 +141,7 @@ public class Main{
 		newDate = dateToCalendar(date);
 		
 		System.out.println(controller.searchProjectsAfterDate(newDate));
+		System.out.println("-------------------------------------------------------------------------------------------");
 		
 	}
 	
@@ -145,6 +152,7 @@ public class Main{
 			searchProjectsBeforeDate();
 		}catch(ParseException exe){
 			System.out.println("There is a ParseException error");
+			System.out.println("-------------------------------------------------------------------------------------------");
 		}
 	}
 	
@@ -160,6 +168,7 @@ public class Main{
 		newDate = dateToCalendar(date);
 		
 		System.out.println(controller.searchProjectsBeforeDate(newDate));
+		System.out.println("-------------------------------------------------------------------------------------------");
 		
 	}
 }
